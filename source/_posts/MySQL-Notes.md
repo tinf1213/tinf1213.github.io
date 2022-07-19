@@ -11,7 +11,7 @@ tags: MySQL
 
 This is a class note taken by tinf on [Coursera](https://www.coursera.org/learn/intro-sql/)
 
-
+<!--more-->
 
 <h2>
     Prepare Env (on Ubuntu)
