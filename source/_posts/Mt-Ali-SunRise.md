@@ -183,7 +183,7 @@ tags: Family trip
 有個有趣的阿伯解說，吸檜木精油跟吸毒一樣，結果還是沒看到完整日出
 
 
-![](https://drive.google.com/uc?export=view&id=HiMN9fuMp5hn2gbtXY8TXC0XmIi4Uyn)
+![](https://drive.google.com/uc?export=view&id=1zvZchxkT8FtF_d_TQ6cQ77r0TsV61KNo)
 
 
 
