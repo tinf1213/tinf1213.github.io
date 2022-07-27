@@ -3,11 +3,11 @@ version: 5.0.0
 # Icarus theme variant, can be "default" or "cyberpunk"
 variant: default
 # Path or URL to the website's logo
-logo: /img/logo.svg
+logo: /img/logo.png
 # Page metadata configurations
 head:
     # URL or path to the website's icon
-    favicon: /img/favicon.svg
+    favicon: /img/favicon.png
     # Web application manifests configuration
     # https://developer.mozilla.org/en-US/docs/Web/Manifest
     manifest:
@@ -211,7 +211,7 @@ sidebar:
     # Left sidebar configurations
     left:
         # Whether the sidebar sticks to the top when page scrolls
-        sticky: false
+        sticky: true
     # Right sidebar configurations
     right:
         # Whether the sidebar sticks to the top when page scrolls
@@ -219,17 +219,22 @@ sidebar:
 # Sidebar widget configurations
 # http://ppoffice.github.io/hexo-theme-icarus/categories/Widgets/
 widgets:
-    # Profile widget configurations
+    -
+        # Where should the widget be placed, left sidebar or right sidebar
+        position: left
+        type: toc
+        # Whether to show the index of each heading
+        # Profile widget configurations
     -
         # Where should the widget be placed, left sidebar or right sidebar
         position: left
         type: profile
         # Author name
-        author: Your name
+        author: Tinf
         # Author title
-        author_title: Your title
+        author_title: Student NCU
         # Author's current location
-        location: Your location
+        location: Taoyuan, Taiwan
         # URL or path to the avatar image
         avatar: 
         # Whether show the rounded avatar image
@@ -237,12 +242,12 @@ widgets:
         # Email address for the Gravatar
         gravatar: 
         # URL or path for the follow button
-        follow_link: https://github.com/ppoffice
+        follow_link: https://github.com/tinf1213
         # Links to be shown on the bottom of the profile widget
         social_links:
             Github:
                 icon: fab fa-github
-                url: https://github.com/ppoffice
+                url: https://github.com/tinf1213
             Facebook:
                 icon: fab fa-facebook
                 url: https://facebook.com
@@ -267,14 +272,14 @@ widgets:
         # Maximum level of headings to show (1-6)
         depth: 3
     # Recommendation links widget configurations
-    -
+    #-
         # Where should the widget be placed, left sidebar or right sidebar
-        position: left
-        type: links
+    #    position: left
+    #    type: links
         # Names and URLs of the sites
-        links:
-            Hexo: https://hexo.io
-            Bulma: https://bulma.io
+    #    links:
+    #        Hexo: https://hexo.io
+    #        Bulma: https://bulma.io
     # Categories widget configurations
     -
         # Where should the widget be placed, left sidebar or right sidebar
@@ -291,45 +296,46 @@ widgets:
         position: left
         type: archives
     # Tags widget configurations
-    -
-        # Where should the widget be placed, left sidebar or right sidebar
-        position: left
-        type: tags
-        # How to order tags. For example 'name' to order by name in ascending order, and '-length' to order by number of posts in each tags in descending order
-        order_by: name
-        # Amount of tags to show. Will show all if not set.
-        amount: 
-        # Whether to show tags count, i.e. number of posts in the tag.
-        show_count: true
+    #-
+    #    # Where should the widget be placed, left sidebar or right sidebar
+    #    position: left
+    #    type: tags
+    #    # How to order tags. For example 'name' to order by name in ascending order, and '-length' to order by number of posts in each tags in descending order
+    #    order_by: name
+    #    # Amount of tags to show. Will show all if not set.
+    #    amount: 
+    #    # Whether to show tags count, i.e. number of posts in the tag.
+    #    show_count: true
     # Google FeedBurner email subscription widget configurations
-    -
-        # Where should the widget be placed, left sidebar or right sidebar
-        position: left
-        type: subscribe_email
-        # Hint text under the email input
-        description: 
-        # Feedburner ID
-        feedburner_id: ''
-    # Google AdSense unit configurations
-    -
-        # Where should the widget be placed, left sidebar or right sidebar
-        position: left
-        type: adsense
-        # AdSense client ID
-        client_id: ''
-        # AdSense AD unit ID
-        slot_id: ''
-    # Follow.it email subscription widget configurations
-    -
-        # Where should the widget be placed, left sidebar or right sidebar
-        position: left
-        type: followit
-        # Hint text under the email input
-        description: 
-        # Subscription form action URL
-        action_url: ''
-        # Feed claiming verification code
-        verification_code: ''
+    #-
+    #    # Where should the widget be placed, left sidebar or right sidebar
+    #    position: left
+    #    type: subscribe_email
+    #    # Hint text under the email input
+    #    description: 
+    #    # Feedburner ID
+    #    feedburner_id: ''
+    ## Google AdSense unit configurations
+    #-
+    #    # Where should the widget be placed, left sidebar or right sidebar
+    #    position: left
+    #    type: adsense
+    #    # AdSense client ID
+    #    client_id: ''
+    #    # AdSense AD unit ID
+    #    slot_id: ''
+    ## Follow.it email subscription widget configurations
+    #-
+    #    # Where should the widget be placed, left sidebar or right sidebar
+    #    position: left
+    #    type: followit
+    #    # Hint text under the email input
+    #    description: 
+    #    # Subscription form action URL
+    #    action_url: ''
+    #    # Feed claiming verification code
+    #    verification_code: ''
+
 # Plugin configurations
 # https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/
 plugins:

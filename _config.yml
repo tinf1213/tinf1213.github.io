@@ -59,7 +59,7 @@ pagination_dir: page
 include: null
 exclude: null
 ignore: null
-theme: icarus
+theme: next
 deploy:
   type: git
   repo: https://github.com/tinf1213/tinf1213.github.io

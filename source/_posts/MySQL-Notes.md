@@ -5,7 +5,7 @@ tags: CS
 ---
 
 <center>
-    Tinf's SQL note on <a href="https://www.coursera.org/learn/intro-sql/">Coursera</a> 
+Tinf's SQL note on <a href="https://www.coursera.org/learn/intro-sql/">Coursera</a> 
 </center>
 
 <!--more-->
