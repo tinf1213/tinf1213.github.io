@@ -319,7 +319,7 @@ DROP/ADD COLUMN "column's name";
     3. 創建關聯式資料集
 </h3>
 
-:::spoiler
+{% spoiler "code" %}
 
 ```sql=
 CREATE DATABASE Music DEFAULT CHARACTER SET utf8;
@@ -389,7 +389,7 @@ INSERT INTO Track (title, rating, len, count, album_id, genre_id)
     VALUES ('Who Made Who', 5, 207, 0, 1, 2);
 ```
 
-:::
+{% endspoiler %}
 
 <h3>
     4. 創建臨時表格
@@ -478,7 +478,7 @@ ON DELETE CASCADE
     使用資料庫
 </h4>
 
-:::spoiler
+{% spoiler "code" %}
 
 ```sql=
 CREATE DATABASE Music DEFAULT CHARACTER SET utf8;
@@ -548,7 +548,7 @@ INSERT INTO Track (title, rating, len, count, album_id, genre_id)
     VALUES ('Who Made Who', 5, 207, 0, 1, 2);
 ```
 
-:::
+{% endspoiler %}
 
 <h4>
     操作
