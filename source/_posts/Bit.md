@@ -4,11 +4,12 @@ date: 2022-07-27 17:15:13
 tags: CS
 ---
 
-<center> 紀錄一下位元運算 </center>
+<center>
+Bit algorithm Note
+</center>
 
 <!--more-->
 
-<h2> Bit </h2>
 
 <h3> 建立二進位數字 </h3>
 
@@ -120,5 +121,5 @@ n >>= 1; // n / 2 ** 1 = 2;
 
 一個 int 變數當作一個集合，一個位元當作一個元素。
 
-
+參考資料： <a href = "https://web.ntnu.edu.tw/~algo/Bit.html" target = "_blank" style = "text-decoration:none;color:blue;"> Bit-演算法筆記</a>
 
