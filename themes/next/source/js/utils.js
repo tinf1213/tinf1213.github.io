@@ -232,7 +232,7 @@ NexT.utils = {
   },
 
   registerSidebarTOC: function() {
-    const navItems = document.querySelectorAll('.post-toc li');
+        const navItems = document.querySelectorAll('.post-toc li');
     const sections = [...navItems].map(element => {
       var link = element.querySelector('a.nav-link');
       var target = document.getElementById(decodeURI(link.getAttribute('href')).replace('#', ''));
@@ -242,8 +242,6 @@ NexT.utils = {
         var offset = target.getBoundingClientRect().top + window.scrollY;
         window.anime({
           targets  : document.scrollingElement,
-          duration : 500,
-          easing   : 'linear',
           scrollTop: offset + 10
         });
       });

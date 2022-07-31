@@ -1,7 +1,9 @@
 ---
 title: Bit operation
 date: 2022-07-27 17:15:13
-tags: CS
+tags: 
+    - CS
+    - algorithm
 ---
 
 <center>
@@ -11,7 +13,7 @@ Bit algorithm Note
 <!--more-->
 
 
-<h3> 建立二進位數字 </h3>
+<h3> About Bit (Binary Digit) </h3>
 
 C++可支援0b字首建立二進位，C語言則否。
 
@@ -99,11 +101,11 @@ Not 翻轉所有位元
 
 ---
 
-<h3> 補充 </h3>
+<h3> *補充 </h3>
 signed 變數沒有定義bit右移時的補充位元，因此在使用 >> 時容易出錯。
 因此使用位元運算考慮使用usigned變數。
 
-
+---
 
 <h2> Bitwise tricks </h2>
 

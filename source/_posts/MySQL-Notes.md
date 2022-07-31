@@ -1,7 +1,9 @@
 ---
 title: MySQL Notes
 date: 2022-07-26 18:23:57
-tags: CS
+tags: 
+    - CS
+    - Coursera
 ---
 
 <center>
