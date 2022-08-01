@@ -92,9 +92,143 @@ int &ref = b;//This wil throw an error of "multiple declaration is not allowed"
 
 ---
 
-<h2> 實裝例 </h2>
+<h2> 實裝例swap </h2>
 
-1. 
+<h3> 1. int </h3>
+
+```cpp
+#include <bits/stdc++.h>
+ using  namespace std;
+
+ void swap_int(int a, int b){
+    swap(a, b);
+    cout << "In function:" << endl;
+    cout << " a = " << endl;
+    cout << " b = " << endl;
+    }
+ int main(){
+    int a = 1 ;
+    int b = 2 ;
+    swap_int(a, b);
+    cout << "In main:" << endl;
+    cout << " a = " << a << endl;
+    cout << " b = " << b << endl;
+    return  0 ;
+}
+```
+
+<h4>output</h4>
+
+```
+in function:
+ a = 2
+ b = 1
+in main:
+ a = 1
+ b = 2
+```
+
+>交換失敗，原因是a,b在main及function中為兩獨立區域變數，不互相干擾。
+
+---
+
+<h3> 2. *int </h3>
+
+
+```cpp
+#include <bits/stdc++.h>
+using  namespace std;
+
+void swap_value_ptr(int *ptra, int *ptrb){
+    swap(*ptra, *ptrb);
+}
+
+int main(){
+    int a = 1 ;
+    int b = 2 ;
+    cout << "Before swap:" << endl;
+    cout << " a = " << a << endl;
+    cout << " b = " << b << endl;
+    cout << " &a = " << &a << endl;
+    cout << " &b = " << &b << endl;
+    swap_value_ptr(&a, &b);
+    cout << "After swap:" << endl;
+    cout << " a = " << a << endl;
+    cout << " b = " << b << endl;
+    cout << " &a = " << &a << endl;
+    cout << " &b = " << &b << endl;
+    return  0 ;
+}
+```
+>將a,b記憶體位置傳入function，並交換兩記憶體內value
+
+<h4> output</h4>
+
+```
+Before swap:
+ a = 1
+ b = 2
+ &a = 0x7ffcdb13f900
+ &b = 0x7ffcdb13f904
+After swap:
+ a = 2
+ b = 1
+ &a = 0x7ffcdb13f900
+ &b = 0x7ffcdb13f904
+```
+
+>從output可以看出a,b變數之記憶體維持而變數value交換。
+
+---
+
+
+<h3> 3. &int </h3>
+
+```cpp
+#include <bits/stdc++.h>
+using  namespace std;
+
+void swap_ref(int &refa, int &refb){
+    swap(refa, refb);
+}
+
+int main(){
+    int a = 1 ;
+    int b = 2 ;
+    cout << "Before swap:" << endl;
+    cout << " a = " << a << endl;
+    cout << " b = " << b << endl;
+    cout << " &a = " << &a << endl;
+    cout << " &b = " << &b << endl;
+    swap_ref(a, b);
+    cout << "After swap:" << endl;
+    cout << " a = " << a << endl;
+    cout << " b = " << b << endl;
+    cout << " &a = " << &a << endl;
+    cout << " &b = " << &b << endl;
+    return  0 ;
+}
+```
+
+>原理同上一個，改用引用方式調換value
+
+<h4>output</h4>
+
+```
+Before swap:
+ a = 1
+ b = 2
+ &a = 0x7ffd068869c0
+ &b = 0x7ffd068869c4
+1
+After swap:
+ a = 2
+ b = 1
+ &a = 0x7ffd068869c0
+ &b = 0x7ffd068869c4
+```
+
+>從output可以看出a,b變數之記憶體維持而變數value交換。
 
 
 
