@@ -1,0 +1,14 @@
+http://example.com/2022/07/27/Bit/
+http://example.com/2022/08/25/BIT/
+http://example.com/2022/07/26/DP/
+http://example.com/2022/07/30/Pointer/
+http://example.com/2022/08/24/inversion-number/
+http://example.com/2022/07/26/MySQL-Notes/
+http://example.com/categories/index.html
+http://example.com/tags/index.html
+http://example.com/
+http://example.com/tags/CS/
+http://example.com/tags/algorithm/
+http://example.com/tags/Bit/
+http://example.com/tags/C/
+http://example.com/tags/Coursera/

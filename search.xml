@@ -1,0 +1,901 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Bit operation</title>
+    <url>/2022/07/27/Bit/</url>
+    <content><![CDATA[<center>
+Bit algorithm Note
+</center>
+
+<span id="more"></span>
+
+
+<h3> About Bit (Binary Digit) </h3>
+
+<p>C++可支援0b字首建立二進位，C語言則否。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> n = <span class="number">0b1010111100011100</span>; <span class="comment">// 44828</span></span><br></pre></td></tr></table></figure>
+
+<h3> Most Significant Bit / Least Significant Bit </h3>
+
+<p>最高有效位元（最左位元）、最低有效位元（最右位元）。簡稱MSB, LSB</p>
+<h2>Bitwise Operation</h2>
+
+<h3> Bitwise shift</h3>
+
+<blockquote>
+<p>0101 &lt;&lt; 1010; &#x2F;&#x2F; 9 &#x3D;&gt; 18<br>1010 &gt;&gt; 0101; &#x2F;&#x2F; 18 &#x3D;&gt; 9</p>
+</blockquote>
+<hr>
+<h3> Bitwise AND(&)</h3>
+
+<blockquote>
+<p>0 &amp; 0 &#x3D; 0<br>1 &amp; 0 &#x3D; 0<br>0 &amp; 1 &#x3D; 0<br>1 &amp; 1 &#x3D; 1</p>
+</blockquote>
+<p>用＆計算二進位數字中1的個數</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">count_bit_1</span><span class="params">(<span class="type">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (; n; n&gt;&gt;=<span class="number">1</span>) <span class="comment">// n&gt;&gt;=1 刪掉n的最右位元。</span></span><br><span class="line">        <span class="keyword">if</span> (n &amp; <span class="number">1</span>)</span><br><span class="line">            count++;</span><br><span class="line">    <span class="keyword">return</span> count;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3> Bitwise OR(|) </h3>
+
+<blockquote>
+<p>0 | 0 &#x3D; 0<br>0 | 1 &#x3D; 1<br>1 | 0 &#x3D; 1<br>1 | 1 &#x3D; 1</p>
+</blockquote>
+<p>用｜強制將數字轉為1</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">mark_5th_bit</span><span class="params">(<span class="type">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n | (<span class="number">1</span> &lt;&lt; <span class="number">4</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3> Bitwise XOR(^) </h3>
+
+<blockquote>
+<p>0 ^ 0 &#x3D; 0<br>0 ^ 1 &#x3D; 1<br>1 ^ 0 &#x3D; 1<br>1 ^ 1 &#x3D; 0</p>
+</blockquote>
+<p>用^顛倒位元</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">reverse_5th_bit</span><span class="params">(<span class="type">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n ^ (<span class="number">1</span> &lt;&lt; <span class="number">4</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3> Bitwise NOT(~) </h3>
+
+<blockquote>
+<p>~ 0 &#x3D; 1<br>~ 1 &#x3D; 0</p>
+</blockquote>
+<p>Not 翻轉所有位元</p>
+<hr>
+<h3> *補充 </h3>
+signed 變數沒有定義bit右移時的補充位元，因此在使用 >> 時容易出錯。
+因此使用位元運算考慮使用usigned變數。
+
+<hr>
+<h2> Bitwise tricks </h2>
+
+<h3> 2的n次冪 </h3>
+二進位數一次左移表示為十進位為乘2, 且運算度快於十進位數字乘以2。
+
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">unsigned</span> <span class="type">int</span>  n = <span class="number">5</span>;</span><br><span class="line">n &lt;&lt;= <span class="number">2</span>; <span class="comment">// n * 2 ** 2 = 20;</span></span><br><span class="line">n &gt;&gt;= <span class="number">1</span>; <span class="comment">// n / 2 ** 1 = 2;</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3> Bitset </h3>
+
+<p>一個 int 變數當作一個集合，一個位元當作一個元素。</p>
+<p>參考資料： <a href = "https://web.ntnu.edu.tw/~algo/Bit.html" target = "_blank" style = "text-decoration:none;color:blue;"> Bit-演算法筆記</a></p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <tags>
+        <tag>CS</tag>
+        <tag>algorithm</tag>
+        <tag>Bit</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>BIT</title>
+    <url>/2022/08/25/BIT/</url>
+    <content><![CDATA[<center> BIT(Binary Indexed Tree) </center>
+
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <tags>
+        <tag>CS</tag>
+        <tag>algorithm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>DP</title>
+    <url>/2022/07/26/DP/</url>
+    <content><![CDATA[<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <tags>
+        <tag>CS</tag>
+        <tag>algorithm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Pointer&amp;Reference</title>
+    <url>/2022/07/30/Pointer/</url>
+    <content><![CDATA[<center>
+Cpp Operation Note
+</center>
+
+<span id="more"></span>
+
+<hr>
+<blockquote>
+<p>不同於Python及Java, c++同時支援Pointer及Reference。<p>
+</blockquote>
+<hr>
+<h2>名詞解釋</h2>
+
+<blockquote>
+<ol>
+<li>Value (值): 記憶體內儲存的變數</li>
+<li>Pointer (指標): 存儲變數之記憶體的絕對位置<br>*Pointer會另開記憶體存取地址。</li>
+<li>Reference (引用): 調出變數所存在記憶體之絕對位置<br>*Reference導向所附記憶體位置，不另開記憶體。</li>
+<li>操作符 (&amp;): 取變數所在之記憶體絕對位置。</li>
+<li>操作符 (*): 對記憶體位置取出值。</li>
+</ol>
+</blockquote>
+<hr>
+<h2> 初始化 </h2>
+
+<ol>
+<li>Pointer初始化:</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="type">int</span> a = <span class="number">5</span>;</span><br><span class="line"><span class="type">int</span> *ptr = &amp;a;</span><br><span class="line"></span><br><span class="line"><span class="comment">//or</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> *ptr;</span><br><span class="line">ptr = &amp;a;</span><br><span class="line"></span><br><span class="line"><span class="comment">//ptr = 0x------------;</span></span><br><span class="line"><span class="comment">//*ptr = 5;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>Reference初始化:</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> a = <span class="number">5</span>;</span><br><span class="line"><span class="type">int</span> &amp;ref = a;</span><br><span class="line"></span><br><span class="line"><span class="comment">//but</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> &amp;ref;</span><br><span class="line">ref = a; <span class="comment">// This operation is incorrect.</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> *ptr = &amp;a;</span><br><span class="line"></span><br><span class="line"><span class="comment">//ref = *ptr = 5;</span></span><br><span class="line"><span class="comment">//&amp;ref = ptr = 0x------------;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>重新附值:</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> a = <span class="number">3</span>;</span><br><span class="line"><span class="type">int</span> b = <span class="number">5</span>;</span><br><span class="line"><span class="type">int</span> *ptr;</span><br><span class="line"></span><br><span class="line">ptr = &amp;a;</span><br><span class="line">ptr = &amp;b;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Pointer可以重新附值</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> a = <span class="number">3</span>;</span><br><span class="line"><span class="type">int</span> b = <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> &amp;ref = a;</span><br><span class="line"><span class="type">int</span> &amp;ref = b;<span class="comment">//This wil throw an error of &quot;multiple declaration is not allowed&quot;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Reference不可被重新附值及宣告</p>
+</blockquote>
+<hr>
+<h2> 實裝例swap </h2>
+
+<h3> 1. int </h3>
+
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"> <span class="keyword">using</span>  <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="type">void</span> <span class="title">swap_int</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span></span>&#123;</span><br><span class="line">    <span class="built_in">swap</span>(a, b);</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;In function:&quot;</span> &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot; a = &quot;</span> &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot; b = &quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line"> <span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> a = <span class="number">1</span> ;</span><br><span class="line">    <span class="type">int</span> b = <span class="number">2</span> ;</span><br><span class="line">    <span class="built_in">swap_int</span>(a, b);</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;In main:&quot;</span> &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot; a = &quot;</span> &lt;&lt; a &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot; b = &quot;</span> &lt;&lt; b &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span>  <span class="number">0</span> ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4>output</h4>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">in function:</span><br><span class="line"> a = 2</span><br><span class="line"> b = 1</span><br><span class="line">in main:</span><br><span class="line"> a = 1</span><br><span class="line"> b = 2</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>交換失敗，原因是a,b在main及function中為兩獨立區域變數，不互相干擾。</p>
+</blockquote>
+<hr>
+<h3> 2. *int </h3>
+
+
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span>  <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">swap_value_ptr</span><span class="params">(<span class="type">int</span> *ptra, <span class="type">int</span> *ptrb)</span></span>&#123;</span><br><span class="line">    <span class="built_in">swap</span>(*ptra, *ptrb);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> a = <span class="number">1</span> ;</span><br><span class="line">    <span class="type">int</span> b = <span class="number">2</span> ;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Before swap:&quot;</span> &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot; a = &quot;</span> &lt;&lt; a &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot; b = &quot;</span> &lt;&lt; b &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot; &amp;a = &quot;</span> &lt;&lt; &amp;a &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot; &amp;b = &quot;</span> &lt;&lt; &amp;b &lt;&lt; endl;</span><br><span class="line">    <span class="built_in">swap_value_ptr</span>(&amp;a, &amp;b);</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;After swap:&quot;</span> &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot; a = &quot;</span> &lt;&lt; a &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot; b = &quot;</span> &lt;&lt; b &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot; &amp;a = &quot;</span> &lt;&lt; &amp;a &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot; &amp;b = &quot;</span> &lt;&lt; &amp;b &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span>  <span class="number">0</span> ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>將a,b記憶體位置傳入function，並交換兩記憶體內value</p>
+</blockquote>
+<h4> output</h4>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Before swap:</span><br><span class="line"> a = 1</span><br><span class="line"> b = 2</span><br><span class="line"> &amp;a = 0x7ffcdb13f900</span><br><span class="line"> &amp;b = 0x7ffcdb13f904</span><br><span class="line">After swap:</span><br><span class="line"> a = 2</span><br><span class="line"> b = 1</span><br><span class="line"> &amp;a = 0x7ffcdb13f900</span><br><span class="line"> &amp;b = 0x7ffcdb13f904</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>從output可以看出a,b變數之記憶體維持而變數value交換。</p>
+</blockquote>
+<hr>
+<h3> 3. &int </h3>
+
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span>  <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">swap_ref</span><span class="params">(<span class="type">int</span> &amp;refa, <span class="type">int</span> &amp;refb)</span></span>&#123;</span><br><span class="line">    <span class="built_in">swap</span>(refa, refb);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> a = <span class="number">1</span> ;</span><br><span class="line">    <span class="type">int</span> b = <span class="number">2</span> ;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Before swap:&quot;</span> &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot; a = &quot;</span> &lt;&lt; a &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot; b = &quot;</span> &lt;&lt; b &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot; &amp;a = &quot;</span> &lt;&lt; &amp;a &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot; &amp;b = &quot;</span> &lt;&lt; &amp;b &lt;&lt; endl;</span><br><span class="line">    <span class="built_in">swap_ref</span>(a, b);</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;After swap:&quot;</span> &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot; a = &quot;</span> &lt;&lt; a &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot; b = &quot;</span> &lt;&lt; b &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot; &amp;a = &quot;</span> &lt;&lt; &amp;a &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot; &amp;b = &quot;</span> &lt;&lt; &amp;b &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span>  <span class="number">0</span> ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>原理同上一個，改用引用方式調換value</p>
+</blockquote>
+<h4>output</h4>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Before swap:</span><br><span class="line"> a = 1</span><br><span class="line"> b = 2</span><br><span class="line"> &amp;a = 0x7ffd068869c0</span><br><span class="line"> &amp;b = 0x7ffd068869c4</span><br><span class="line">1</span><br><span class="line">After swap:</span><br><span class="line"> a = 2</span><br><span class="line"> b = 1</span><br><span class="line"> &amp;a = 0x7ffd068869c0</span><br><span class="line"> &amp;b = 0x7ffd068869c4</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>從output可以看出a,b變數之記憶體維持而變數value交換。</p>
+</blockquote>
+<p>參考資料： <a href = "https://www.cnblogs.com/alephsoul-alephsoul/archive/2012/10/10/2719192.html" target = "_blank" style = "text-decoration:none;color:blue;"> [C++基礎]019_指針和引用（int<em>、int&amp;、int</em>&amp;、int&amp;*、int**）</a>, <a href = "https://www.geeksforgeeks.org/pointers-vs-references-cpp/" target = "_blank" style = "text-decoration:none;color:blue;"> Pointers vs References in C++</a></p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <tags>
+        <tag>CS</tag>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Inversion number</title>
+    <url>/2022/08/24/inversion-number/</url>
+    <content><![CDATA[<center>
+Inversion Number algorithm Note
+</center>
+
+<span id="more"></span>
+
+<h3> 転倒数的意義 </h3>
+
+<p>簡單來說就是泡泡排序的交換次數<br>但為什麼不直接實做排序再計算次數呢？<br>泡泡搜尋法的最差複雜度為 O(N^2）而使用Bit計算可以達到 O(NlogN)</p>
+<h3> 分析泡泡排序法的交換次數 </h3>
+
+<h4> 1. 如何判斷一個數字會交換的次數？ </h4>
+
+<p>泡泡搜尋法的交換規則為左邊的值大於右邊的值即發生交換。</p>
+<h4> 2. 計算總交換次數 </h4>
+
+<p>由此可以得知總交換次數為所有數字之現在位置的左邊大於自己值的個數總和。</p>
+<blockquote>
+<p>相對位置在Ai左邊而值大於Ai之數後簡稱前置大數。</p>
+</blockquote>
+<h3> 實現計算所有前置大數的原理(與計數排序法counting sort類似) </h3>
+
+<p><a href="https://atcoder.jp/contests/chokudai_S001/tasks/chokudai_S001_j" target="_blank" style="text-decoration:none;color:blue;">例題1: Atcoder s001_j</a></p>
+<p><a href="https://atcoder.jp/contests/abc264/editorial/4582" target="_blank" style="text-decoration:none;color:blue;">例題2: Atcoder abc264_d</a></p>
+<h4> 1. BIT內以A的值為index紀錄出現過數字。</h4>
+
+<table>
+<thead>
+<tr>
+<th>index</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A:</td>
+<td>8</td>
+<td>3</td>
+<td>6</td>
+<td>5</td>
+<td>2</td>
+<td>4</td>
+<td>1</td>
+<td>9</td>
+<td>7</td>
+</tr>
+<tr>
+<td>BIT:</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>index</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A:</td>
+<td>(8)</td>
+<td>3</td>
+<td>6</td>
+<td>5</td>
+<td>2</td>
+<td>4</td>
+<td>1</td>
+<td>9</td>
+<td>7</td>
+</tr>
+<tr>
+<td>BIT:</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>1</td>
+<td></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>index</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A:</td>
+<td>8</td>
+<td>(3)</td>
+<td>6</td>
+<td>5</td>
+<td>2</td>
+<td>4</td>
+<td>1</td>
+<td>9</td>
+<td>7</td>
+</tr>
+<tr>
+<td>BIT:</td>
+<td></td>
+<td></td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>1</td>
+<td></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>index</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A:</td>
+<td>8</td>
+<td>3</td>
+<td>(6)</td>
+<td>5</td>
+<td>2</td>
+<td>4</td>
+<td>1</td>
+<td>9</td>
+<td>7</td>
+</tr>
+<tr>
+<td>BIT:</td>
+<td></td>
+<td></td>
+<td>1</td>
+<td></td>
+<td></td>
+<td>1</td>
+<td></td>
+<td>1</td>
+<td></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>index</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A:</td>
+<td>8</td>
+<td>3</td>
+<td>6</td>
+<td>5</td>
+<td>(2)</td>
+<td>4</td>
+<td>1</td>
+<td>9</td>
+<td>7</td>
+</tr>
+<tr>
+<td>BIT:</td>
+<td></td>
+<td></td>
+<td>1</td>
+<td></td>
+<td>1</td>
+<td>1</td>
+<td></td>
+<td>1</td>
+<td></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>index</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A:</td>
+<td>8</td>
+<td>3</td>
+<td>6</td>
+<td>5</td>
+<td>2</td>
+<td>(4)</td>
+<td>1</td>
+<td>9</td>
+<td>7</td>
+</tr>
+<tr>
+<td>BIT:</td>
+<td></td>
+<td>1</td>
+<td>1</td>
+<td></td>
+<td>1</td>
+<td>1</td>
+<td></td>
+<td>1</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>以此推計算到第六格也就是4的位置得到BIT為011011010，BIT的特性使我們可以快速加總出前綴合，而我們現在要判斷4的前置大數，透過加總BIT中1~4號位可以得出前置小數為2，在用前置數字的數量減去前置小數即可獲得前置大數的數量。關鍵： 做到第幾位就算到第幾位。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> io ios_base::sync_with_stdio(0), cin.tie(0);</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> <span class="type">int</span> ll;</span><br><span class="line"> </span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">BIT</span>&#123;</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; bit;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="built_in">BIT</span>(<span class="type">void</span>)&#123;</span><br><span class="line">            bit.<span class="built_in">resize</span>(n+<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="type">int</span> <span class="title">sumup</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">            <span class="type">int</span> temp = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> i=x;i&gt;<span class="number">0</span>;i-=i&amp;-i)&#123;</span><br><span class="line">                temp += bit[i];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> temp;</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        <span class="function"><span class="type">void</span> <span class="title">update</span><span class="params">(<span class="type">int</span> y)</span></span>&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> i=y;i&lt;=n;i+=i&amp;-i) bit[i]++;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">data</span><span class="params">(n)</span></span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++) cin &gt;&gt; data[i];</span><br><span class="line">    BIT b;</span><br><span class="line">    ll ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        ans += i - b.<span class="built_in">sumup</span>(data[i]);</span><br><span class="line">        b.<span class="built_in">update</span>(data[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>參考資料： <a href = "https://scrapbox.io/pocala-kyopro/%E8%BB%A2%E5%80%92%E6%95%B0" target = "_blank" style = "text-decoration:none;color:blue;"> 転倒数</a></p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <tags>
+        <tag>CS</tag>
+        <tag>algorithm</tag>
+        <tag>Bit</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySQL Notes</title>
+    <url>/2022/07/26/MySQL-Notes/</url>
+    <content><![CDATA[<center>
+MySQL <a href="https://www.coursera.org/learn/intro-sql/" target="_blank" style="text-decoration:none;color:blue;">Coursera</a> Note 
+</center>
+
+<span id="more"></span>
+
+<h2>
+    Prepare Env (on Ubuntu)
+</h2>
+<h3>
+    Install MySQL
+</h3>
+
+<figure class="highlight console"><table><tr><td class="code"><pre><span class="line">sudo apt update &amp;&amp; sudo apt install mysql-server</span><br></pre></td></tr></table></figure>
+
+<h3>
+    Put server on
+</h3>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo service mysql start</span><br></pre></td></tr></table></figure>
+
+<h3>
+    Log in to the server
+</h3>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>預設密碼為root</p>
+</blockquote>
+<h3>
+    2. WHERE
+</h3>
+<h4>
+    創建所有關聯式資料集臨時表後再過濾資料
+</h4>
+
+
+
+<h2>
+    Basic operations (On MySQL-cli)
+</h2>
+
+
+
+
+<h3>
+    顯示Server上所有資料庫
+</h3>
+
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> DATABASES;</span><br></pre></td></tr></table></figure>
+
+
+<h3>
+    創建資料庫
+</h3>
+
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">CREATA DATABASES &quot;Database&#x27;s name&quot;;</span><br></pre></td></tr></table></figure>
+
+
+<h3>
+    選擇使用的資料庫
+</h3>
+
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">USE &quot;Database&#x27;s name&quot;;</span><br></pre></td></tr></table></figure>
+
+
+<h3>
+    創建表格
+</h3>
+
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> &quot;Table&#x27;s name&quot;(</span><br><span class="line">    &quot;Column&#x27;s name&quot; &quot;DataType&quot; (&quot;limmit&quot;),</span><br><span class="line">    &quot;Column&#x27;s name&quot; &quot;DataType&quot; (&quot;limmit&quot;),</span><br><span class="line">    .</span><br><span class="line">    .</span><br><span class="line">    .</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+
+<h3>
+    顯示表格內各欄位設定
+</h3>
+
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">DESCRIBE</span> &quot;Table&#x27;s name&quot;;</span><br></pre></td></tr></table></figure>
+
+
+<h3>
+    新增資料至表格
+</h3>
+
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> &quot;Table&#x27;s name&quot; (&quot;column1&quot;, &quot;column2&quot;, ...) <span class="keyword">VALUES</span> (&quot;Data1&quot;, &quot;Data2&quot;, ...);</span><br></pre></td></tr></table></figure>
+
+
+<h3>
+    從表格刪除資料(有條件)
+</h3>
+
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> &quot;Table&#x27;s name&quot; (<span class="keyword">WHERE</span> &quot;Condition&quot;);</span><br></pre></td></tr></table></figure>
+
+
+<h3>
+    更新表格內資料
+</h3>
+
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> &quot;Table&#x27;s name&quot; <span class="keyword">SET</span> &quot;Target column&#x27;s name&quot; <span class="operator">=</span> &quot;New content&quot; <span class="keyword">WHERE</span> &quot;Target column&#x27;s name&quot; <span class="operator">=</span> &quot;Target content&quot;</span><br></pre></td></tr></table></figure>
+
+
+<h3>
+    顯示表格內資料(帶條件)(排序)(特定關鍵字)
+</h3>
+
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> &quot;Table&#x27;s name&quot; (<span class="keyword">WHERE</span> &quot;condition&quot;) (<span class="keyword">ORDER</span> <span class="keyword">BY</span> &quot;Column&#x27;s name&quot;) (<span class="keyword">WHERE</span> &quot;Column&#x27;s name&quot; <span class="keyword">LIKE</span> <span class="string">&#x27;%&quot;Keyword&quot;%&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+
+<h3>
+    計算表格內資料筆數(帶條件)
+</h3>
+
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="built_in">COUNT</span>(<span class="operator">*</span>) <span class="keyword">FROM</span> &quot;Table&#x27;s name&quot; (<span class="keyword">WHERE</span> &quot;Condition&quot;);</span><br></pre></td></tr></table></figure>
+
+<h3>
+    修改Table內Column
+</h3>
+
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> &quot;Table&#x27;s name&quot; </span><br><span class="line"><span class="keyword">DROP</span><span class="operator">/</span><span class="keyword">ADD</span> <span class="keyword">COLUMN</span> &quot;column&#x27;s name&quot;;</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h2>
+    Data Types
+</h2>
+
+
+
+<h3>
+    String
+</h3>
+
+<h4>
+    Understand character sets and indexable for searching
+</h4>
+
+<ul>
+<li>CHAR : Allocates the entire space (for small strings and unknow length)</li>
+<li>VARCHAR : Depending on the date length (less space)</li>
+</ul>
+<h4>
+    Usage: normal string data
+</h4>
+
+
+<h3>
+    Text
+</h3>
+
+<h4>
+    Have a character set but not used with index or sorting and can only prefix
+</h4>
+
+<ul>
+<li>TINYTEXT : up to 255 characters</li>
+<li>TEXT : up to 65K</li>
+<li>MEDIUMTEXT : up to 16M</li>
+<li>LONGTEXT : up to 16G</li>
+</ul>
+<h4>
+    Usage: paragraphs or HTML pages
+</h4>
+
+
+<h3>
+    Binary Type 
+</h3>
+
+<h4>
+    8-32 bits depending on character set and not indexed or sorted
+</h4>
+
+<ul>
+<li>BYTE : up to 255 bytes</li>
+<li>VARBINARY : up to 65K bytes</li>
+</ul>
+<h4>
+    Usage: small image or sensor signal
+</h4>
+
+
+<h3>
+    Binary Large Object(BLOB)
+</h3>
+
+<h4>
+    No translation, index, or character set
+</h4>
+
+<ul>
+<li>TINYBLOB : up to 255 bytes</li>
+<li>BLOB : up to 65K</li>
+<li>MEDIUMBLOB : up to 16M</li>
+<li>LONGBLOB : up to 4G</li>
+</ul>
+<h4>
+    Usage: Large raw data, files, images, word doc, PDFs, movies
+</h4>
+
+
+<h3>
+    Interger 
+</h3>
+
+<h4>
+    little storage, easy to compare, sort , indexed
+</h4>
+
+<ul>
+<li>TINYINT : (-128, +128)</li>
+<li>SMALLINT : (-32768, +32768)</li>
+<li>INT : (2 Billion)</li>
+<li>BIGINT : (10**18 ish)</li>
+</ul>
+<h4>
+    Usage: small image or sensor signal
+</h4>
+
+
+<h3>
+    Float
+</h3>
+
+<h4>
+   Wide range of values but limmilted accuracy
+</h4>
+
+<ul>
+<li>FLOAT(32-bit) : 10**38 with 7 digits accuracy</li>
+<li>DOUBLE(64-bit) : 10**308 with 14 digits accuracy</li>
+</ul>
+<h4>
+    Usage: Scientific data
+</h4>
+
+
+<h3>
+    Dates
+</h3>
+
+<h4>
+    Represent time with integer
+</h4>
+
+<ul>
+<li>TIMESTAMP : ‘YYYY-MM-DD HH:MM:SS’(1970, 2037)</li>
+<li>DATETIME : ‘YYYY-MM-DD HH:MM:SS’</li>
+<li>DATE : ‘YYYY-MM-DD’</li>
+<li>TIME: ‘HH:MM:SS’</li>
+</ul>
+<h4>
+    Buit-in MySQL function NOW()
+</h4>
+
+
+
+<hr>
+<h2>
+    關聯式資料集
+</h2>
+
+
+
+<h3>
+  1. 構思資料庫關係圖
+</h3>
+
+<blockquote>
+<ol>
+<li>Find the core of the database</li>
+<li>Use the core to create the first table</li>
+<li>Put non-duplicate columns into the first table</li>
+<li>Find relation between other columns and point to  more table</li>
+</ol>
+</blockquote>
+<h3>
+    2. 標準資料型態
+</h3>
+
+<blockquote>
+<ul>
+<li>Do not replicate data, use point</li>
+<li>Use integers for keys</li>
+<li>Add special ‘key’ column to each table, for reference (By AUTO_INCREMENT)</li>
+</ul>
+</blockquote>
+<h3>
+    3. 創建關聯式資料集
+</h3>
+
+
+  <span class="spoiler" onclick="this.classList.toggle('spoiler')">
+    <span class="spoiler-blur ">code</span>
+  </span>
+
+<h3>
+    4. 創建臨時表格
+</h3>
+
+<ul>
+<li>Merge multilple databases and list all combinations</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">Database1 <span class="keyword">JOIN</span> Database2 <span class="keyword">JOIN</span> ...</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Filter to prevent JOIN from output all the combinations</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ON</span> &quot;Foreign key of Database1&quot; <span class="operator">=</span> &quot;Foreign key of database2&quot;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Automatically delete date while related data was updated</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ON</span> <span class="keyword">DELETE</span> CASCADE</span><br></pre></td></tr></table></figure>
+<h3>
+    5. 多對多關聯式資料集
+</h3>
+    
+<h3>
+    Types of keys
+</h3>
+
+<ul>
+<li>Primary key : Generally an integer AUTO_INCREMENT field</li>
+<li>Logical key : Generally a string for UI application to search (do not use logical key as primary key!!!)</li>
+<li>Foreign key : Generally an integer pointing to another table</li>
+</ul>
+<h2>
+    條件判斷式差別
+</h2>
+<h3>
+    資料處理順序
+</h3>
+<h4>
+    掃描資料集關聯 => 創建臨時表 => 進行計算 => 輸出
+</h4>
+<h3>
+    1. ON
+</h3>
+<h4>
+    過濾關聯式資料集後創建臨時表
+</h4>
+<h3>
+    2. WHERE
+</h3>
+<h4>
+    創建所有關聯式資料集臨時表後過濾資料
+</h4>
+<h3>
+    3. HAVING
+</h3>
+<h4>
+    創建所有關聯式資料集臨時表並進行完統計後再輸出前過濾
+</h4>
+
+<h3>
+    運行效率
+</h3>
+<h4>
+    處理資料數量由上至下遞減，也因此處理速度由上至下減慢
+</h4>
+
+
+
+
+
+<h2>
+    踩雷筆記
+</h2>
+
+<h3>
+    GROUP BY 錯誤
+</h3>
+
+<h4>
+    使用資料庫
+</h4>
+
+
+  <span class="spoiler" onclick="this.classList.toggle('spoiler')">
+    <span class="spoiler-blur ">code</span>
+  </span>
+
+<h4>
+    操作
+</h4>
+
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> (Genre.name), Artist.name</span><br><span class="line"><span class="keyword">FROM</span> Track <span class="keyword">JOIN</span> Album <span class="keyword">JOIN</span> Artist <span class="keyword">JOIN</span> Genre</span><br><span class="line"><span class="keyword">WHERE</span> Track.album_id <span class="operator">=</span> Album.album_id <span class="keyword">AND</span> Track.genre_id <span class="operator">=</span> Genre.genre_id <span class="keyword">and</span> Artist.artist_id <span class="operator">=</span> Album.artist_id</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> Artist.name;</span><br></pre></td></tr></table></figure>
+
+<h4>
+    報錯
+</h4>
+
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">ERROR <span class="number">1055</span> (<span class="number">42000</span>): Expression #<span class="number">1</span> <span class="keyword">of</span> <span class="keyword">SELECT</span> list <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">in</span> <span class="keyword">GROUP</span> <span class="keyword">BY</span> clause <span class="keyword">and</span> <span class="keyword">contains</span> nonaggregated <span class="keyword">column</span> <span class="string">&#x27;music.Genre.name&#x27;</span> which <span class="keyword">is</span> <span class="keyword">not</span> functionally dependent <span class="keyword">on</span> columns <span class="keyword">in</span> <span class="keyword">GROUP</span> <span class="keyword">BY</span> clause; this <span class="keyword">is</span> incompatible <span class="keyword">with</span> sql_mode<span class="operator">=</span>only_full_group_by</span><br></pre></td></tr></table></figure>
+<h4>
+    解決
+</h4>
+
+<p>Terminal</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf</span><br></pre></td></tr></table></figure>
+
+<p>最後一行加上</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sql_mode = <span class="string">&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <tags>
+        <tag>CS</tag>
+        <tag>Coursera</tag>
+      </tags>
+  </entry>
+</search>
